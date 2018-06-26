@@ -1,0 +1,18 @@
+{
+  "name": "jhays-event-emitter",
+  "version": "1.0.0",
+  "description": "Event Emitter made by Jon Hays",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Hays",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^23.1.2",
+    "jest": "^23.2.0",
+    "ts-jest": "^22.4.6",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}
