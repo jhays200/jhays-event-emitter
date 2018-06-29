@@ -95,11 +95,13 @@ export class EventEmitter {
         const listenerList = this.eventSubscriptions.get(eventName) as IEventListener[];
 
         if (listenerList === undefined) {
-            throw Error(`${eventName} is not registered`);
+            return false;
         }
 
         for (const l of listenerList) {
             l.listener.apply(null, params);
         }
+
+        return true;
     }
 }

@@ -92,9 +92,8 @@ describe("event-emitter.ts", () => {
         }
     });
 
-    test("emit throws error with no listeners", () => {
+    test("emit returns false if no listeners are called", () => {
         const eventEmitter = new EventEmitter();
-
-        expect(() => eventEmitter.emit("error")).toThrowError();
+        expect(eventEmitter.emit("nothing")).toBe(false);
     });
 });
