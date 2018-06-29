@@ -96,5 +96,5 @@ describe("event-emitter.ts", () => {
         const eventEmitter = new EventEmitter();
 
         expect(() => eventEmitter.emit("error")).toThrowError();
-    })
+    });
 });
