@@ -4,18 +4,29 @@
   "description": "Event Emitter made by Jon Hays",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "dev": "npm run build && node dist/index.js",
-    "build": "tsc"
+    "build": "rimraf ./dist && tsc"
   },
   "author": "Jonathan Hays",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^23.1.2",
+    "@types/jest": "^22.2.3",
     "@types/node": "^10.3.6",
-    "jest": "^23.2.0",
+    "jest": "^22.4.4",
+    "rimraf": "^2.6.2",
     "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)?$"
   }
 }

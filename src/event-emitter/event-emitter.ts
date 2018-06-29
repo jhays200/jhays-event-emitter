@@ -1,13 +1,13 @@
 
 export type EventFunction = (...args: any[]) => void;
 
-interface EventListener {
+interface IEventListener {
     listenerId: number;
     listener: EventFunction;
 }
 
 export class EventEmitter {
-    private eventSubscriptions = new Map<string, EventListener[]>();
+    private eventSubscriptions = new Map<string, IEventListener[]>();
     private listenerIdSequence = 1;
 
     // constructor() {}
@@ -23,7 +23,7 @@ export class EventEmitter {
             this.eventSubscriptions.set(eventName, []);
         }
 
-        const listenerList = this.eventSubscriptions.get(eventName) as EventListener[];
+        const listenerList = this.eventSubscriptions.get(eventName) as IEventListener[];
         listenerList.push({
             listener,
             listenerId: this.listenerIdSequence++,
@@ -45,12 +45,12 @@ export class EventEmitter {
         const onceFunc = (...args: any[]) => {
             listener.apply(null, args);
 
-            const currentlistenerList = this.eventSubscriptions.get(eventName) as EventListener[];
+            const currentlistenerList = this.eventSubscriptions.get(eventName) as IEventListener[];
             this.eventSubscriptions.set(
                 eventName,
                 currentlistenerList.filter((l) => l.listenerId !== listenerId));
         };
-        const listenerList = this.eventSubscriptions.get(eventName) as EventListener[];
+        const listenerList = this.eventSubscriptions.get(eventName) as IEventListener[];
         listenerList.push({
             listener: onceFunc,
             listenerId,
@@ -91,8 +91,8 @@ export class EventEmitter {
      * @param eventName The event to trigger.
      * @param params The parameters to pass to the listeners
      */
-    public emmit(eventName: string, ...params: any[]) {
-        const listenerList = this.eventSubscriptions.get(eventName) as EventListener[];
+    public emit(eventName: string, ...params: any[]) {
+        const listenerList = this.eventSubscriptions.get(eventName) as IEventListener[];
 
         if (listenerList === undefined) {
             throw Error(`${eventName} is not registered`);
